@@ -121,7 +121,6 @@ export function isValidBirth(elem, msg) {
  * @return {boolean} => true, la valeur du champ correspond a la demande - false, la valeur du champ ne correspond pas a la demande
  */
 export function isCitiesCheck(elem, msg, inputs) {
-  let oneChecked = false;
   oneChecked = Array.from(inputs).some(radioElem => radioElem.checked) // on duplique le tableau cities, puis on vérifie si au moins un elem a l'attribut checked
   if (!oneChecked) {
     setErrMsg(elem, msg);
