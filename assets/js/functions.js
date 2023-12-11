@@ -24,8 +24,7 @@ export function editNav() {
  * 
  */
 export function launchModal() {
-  // modalbg.style.display = "block"; // on fait apparaitre le modal
-  modalbg.classList.add("modal-show");
+  modalbg.classList.add("modal-show"); // on fait apparaitre le modal
 }
 
 /**
@@ -34,8 +33,7 @@ export function launchModal() {
  * 
  */
 export function closeModal() {
-  // modalbg.style.display = "none"; // on fait disparaitre le modal
-  modalbg.classList.remove("modal-show");
+  modalbg.classList.remove("modal-show"); // on fait disparaitre le modal
   document.querySelector("form[name='reserve']").reset(); // on reset tous les champs du formulaires
 }
 

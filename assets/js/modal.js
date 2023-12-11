@@ -24,24 +24,25 @@ const inputBirth = document.getElementById("birthdate");
 const inputQuantity = document.getElementById("quantity");
 const inputRadio = document.querySelectorAll("input[type='radio'");
 const inputCgu = document.getElementById("checkbox1");
-const inputNews = document.getElementById("checkbox2");
+const inputThx = document.getElementById("btn-thanks");
 //other
 const formElem = document.querySelector("form[name='reserve'");
+const thanksElem = document.querySelector(".thanks");
 
 // Objet contenant les messages d'erreur
 const objMsg = {
-  errName: "Doit comporter entre 2 et 31 caractères. Lettres (avec accents) et trait d'union sont acceptés",
-  errEmail: "L'email est invalide",
-  errBirth: "La date semble incorrecte",
-  errQty: "Vous devez indiquer un chiffre valide",
-  errCities: "Vous devez sélectionner une ville",
-  errCgu: "Vous devez accepter les CGUs",
+  errName: "Doit comporter entre 2 et 31 caractères.",
+  errEmail: "L'email est invalide.",
+  errBirth: "La date est incorrecte.",
+  errQty: "Vous devez indiquer un chiffre valide.",
+  errCities: "Vous devez sélectionner une ville.",
+  errCgu: "Vous devez vérifier que vous acceptez les termes et conditions.",
 }
 
 // Regex
-const rgxName = /^[a-zA-ZÀ-ÖØ-öøç]{2,31}[-]{0,1}[a-zA-ZÀ-ÖØ-öøç]{0,31}$/; // Nom et Prenom
+const rgxName = /^[a-zA-ZÀ-ÖØ-öøç ]{2,31}[-]{0,1}[a-zA-ZÀ-ÖØ-öøç ]{0,31}$/; // Nom et Prenom
 const rgxEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/; //Email
-const rgxQty = /^[0-9]$/; // Quantite
+const rgxQty = /^\d+$/; // Quantite
 
 
 // Events principaux
@@ -64,6 +65,13 @@ inputBirth.addEventListener("input", () => isValidBirth(inputBirth, objMsg));
 inputQuantity.addEventListener("input", () => isValidInput(inputQuantity, objMsg.errQty, rgxQty));
 inputRadio.forEach((el) => el.addEventListener("change", () => isCitiesCheck(el, objMsg.errCities, inputRadio)));
 inputCgu.addEventListener("change", () => isValidCgu(inputCgu, objMsg.errCgu));
+
+// "Fermer" Button reset
+inputThx.addEventListener("click", () => {
+  formElem.classList.remove("modal-hide");
+  thanksElem.classList.replace("modal-show", "modal-hide");
+  closeModal();
+});
 
 /**
 * validate()
@@ -89,13 +97,8 @@ function validate() {
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
   if (validate()) {
-    //alors on peut valider le formulaire
-    console.log("Debug form est valide!" + validate());
-    // on récupère les valeur pour le traitement futur.
-
     // on affiche l'information à l'utilisateur sur la validation du formulaire
-
-    // on ferme le modal après un certain délai
-
+    formElem.classList.add("modal-hide");
+    thanksElem.classList.replace("modal-hide", "modal-show");
   }
 })

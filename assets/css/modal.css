@@ -207,6 +207,10 @@ main {
   display: block;
 }
 
+.modal-hide {
+  display: none !important;
+}
+
 label {
   font-family: var(--font-default);
   font-size: 17px;
@@ -230,15 +234,31 @@ input {
   height: 48px;
 }
 
+.thanks {
+  display: grid;
+  height: 700px;
+  align-items: flex-end;
+}
+
+.thanks .btn-submit {
+  justify-self: flex-end;
+}
+
+.thanks__title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 400;
+}
+
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 0.55em;
   color: #e54858;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
   text-align: right;
-  line-height: 0.3;
+  line-height: 0.4;
   opacity: 0;
   transition: 0.3s;
 }
