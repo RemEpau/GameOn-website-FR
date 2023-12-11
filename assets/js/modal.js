@@ -31,10 +31,9 @@ const formElem = document.querySelector("form[name='reserve'");
 // Objet contenant les messages d'erreur
 const objMsg = {
   errName: "Doit comporter entre 2 et 31 caractères. Lettres (avec accents) et trait d'union sont acceptés",
-  errEmail: "L'email semble invalide",
+  errEmail: "L'email est invalide",
   errBirth: "La date semble incorrecte",
-  errBirthYoung: "Vous devez être majeur pour participer",
-  errQty: "Vous devez indiquer un chiffre entre 0 et 100",
+  errQty: "Vous devez indiquer un chiffre valide",
   errCities: "Vous devez sélectionner une ville",
   errCgu: "Vous devez accepter les CGUs",
 }
@@ -42,7 +41,7 @@ const objMsg = {
 // Regex
 const rgxName = /^[a-zA-ZÀ-ÖØ-öøç]{2,31}[-]{0,1}[a-zA-ZÀ-ÖØ-öøç]{0,31}$/; // Nom et Prenom
 const rgxEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/; //Email
-const rgxQty = /^[0-9]{1,2}$/; // Quantite
+const rgxQty = /^[0-9]$/; // Quantite
 
 
 // Events principaux
@@ -81,10 +80,7 @@ function validate() {
   let isValidCguR = isValidCgu(inputCgu, objMsg.errCgu);
 
   //if(isValidFirstR && isValidLastR && isValidEmailR && isValidBirthR && isValidQuantityR && isValidCitieR && isValidCguR){
-  if (isValidFirstR && isValidLastR && isValidEmailR && isValidBirthR && isValidQuantityR && isValidCguR) {
-    return true;
-  }
-  return false;
+  return isValidFirstR && isValidLastR && isValidEmailR && isValidBirthR && isValidQuantityR && isValidCguR;
 }
 
 
@@ -97,9 +93,9 @@ btnSubmit.addEventListener("click", (e) => {
     console.log("Debug form est valide!" + validate());
     // on récupère les valeur pour le traitement futur.
 
-    // on affiche l'information au client sur la validation du formulaire
+    // on affiche l'information à l'utilisateur sur la validation du formulaire
 
-    // on ferme le modal avec un délai
+    // on ferme le modal après un certain délai
 
   }
 })

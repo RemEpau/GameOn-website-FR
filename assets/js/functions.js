@@ -24,7 +24,8 @@ export function editNav() {
  * 
  */
 export function launchModal() {
-  modalbg.style.display = "block"; // on fait apparaitre le modal
+  // modalbg.style.display = "block"; // on fait apparaitre le modal
+  modalbg.classList.add("modal-show");
 }
 
 /**
@@ -33,7 +34,8 @@ export function launchModal() {
  * 
  */
 export function closeModal() {
-  modalbg.style.display = "none"; // on fait disparaitre le modal
+  // modalbg.style.display = "none"; // on fait disparaitre le modal
+  modalbg.classList.remove("modal-show");
   document.querySelector("form[name='reserve']").reset(); // on reset tous les champs du formulaires
 }
 
@@ -100,13 +102,7 @@ export function isValidBirth(elem, msg) {
     diffyear-- // on enleve donc un an pour ajuster
     //console.log("Debug -1 an => "+diffyear)
   }
-  if (diffyear < 18) {
-    // utilisateur mineur : refus
-    //console.log("Debug est mineur => "+diffyear)
-    setErrMsg(elem, msg.errBirthYoung)
-    return false
-  }
-  //utilisateur majeur
+  //utilisateur majeur : true
   //console.log("Debug date All good => "+diffyear)
   rmErrMsg(elem)
   return true
@@ -121,7 +117,7 @@ export function isValidBirth(elem, msg) {
  * @return {boolean} => true, la valeur du champ correspond a la demande - false, la valeur du champ ne correspond pas a la demande
  */
 export function isCitiesCheck(elem, msg, inputs) {
-  oneChecked = Array.from(inputs).some(radioElem => radioElem.checked) // on duplique le tableau cities, puis on vérifie si au moins un elem a l'attribut checked
+  let oneChecked = Array.from(inputs).some(radioElem => radioElem.checked) // on duplique le tableau cities, puis on vérifie si au moins un elem a l'attribut checked
   if (!oneChecked) {
     setErrMsg(elem, msg);
     return oneChecked;
@@ -141,10 +137,7 @@ export function getCheckedRadioValue(elemList, msg = "") {
   elemList.forEach((elem) => {
     //console.log(elem)
     if (elem.checked) {
-      console.log("--Debug elem.checked")
-      console.log("--Debug radio checked => " + elem.value)
       if (msg !== "") {
-        console.log("--Debug if msg !== ''")
         rmErrMsg(elem)
         return true
       }

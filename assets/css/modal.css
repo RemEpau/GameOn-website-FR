@@ -203,6 +203,10 @@ main {
   margin: 15px auto;
 }
 
+.modal-show {
+  display: block;
+}
+
 label {
   font-family: var(--font-default);
   font-size: 17px;
